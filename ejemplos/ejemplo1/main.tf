@@ -3,7 +3,7 @@
 resource "libvirt_volume" "server1-disk" {
   name           = "server1-linked.qcow2"
   pool           = var.libvirt_pool_name
-  base_volume_id = "${var.libvirt_pool_path}/debian13-base.qcow2"
+  base_volume_id = "${var.libvirt_pool_path}/ubuntu2404-base.qcow2"
   format         = "qcow2"
 }
 
