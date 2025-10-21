@@ -30,18 +30,22 @@ resource "libvirt_domain" "server1" {
   memory = 1024
   vcpu   = 2
 
+  network_interface {
+    network_id     = libvirt_network.nat-dhcp2.id
+    wait_for_lease = true
+  }
+
 
   network_interface {
     network_id     = libvirt_network.nat-dhcp.id
     wait_for_lease = true
   }
 
-  # Red 2: Red default
-  network_interface {
-    network_name   = "default"
-    wait_for_lease = true
-  }
-
+network_interface { 
+	network_name = "default" 
+	wait_for_lease = true 
+}
+  
   disk { volume_id = libvirt_volume.server1-disk.id }
   # Segundo disco
   disk { volume_id = libvirt_volume.disk-extra1.id }
