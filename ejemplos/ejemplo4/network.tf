@@ -7,10 +7,10 @@
 ##############################################
 
 resource "libvirt_network" "nat-dhcp" {
-  name      = "nat-dhcp"
+  name      = "nat-dhcp-tofu"
   mode      = "nat"
   domain    = "example.com"
-  addresses = ["192.168.100.0/24"]
+  addresses = ["192.168.140.0/24"]
   bridge    = "virbr10"
   dhcp { enabled = true }
   dns { enabled = true }
@@ -55,7 +55,7 @@ resource "libvirt_network" "aislada-static" {
   autostart = true
   mode      = "none"
   bridge    = "virbr13"
-  addresses = ["192.168.130.0/24"]
+  addresses = ["192.168.141.0/24"]
   dhcp { enabled = false }
 }
 
