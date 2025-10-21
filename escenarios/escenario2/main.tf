@@ -3,8 +3,17 @@
 ########################################
 
 module "network" {
-  source   = "../../terraform/modules/network"
-  networks = local.networks
+  source = "../../terraform/modules/network"
+  for_each = local.networks
+
+  name      = each.value.name
+  mode      = each.value.mode
+  domain    = lookup(each.value, "domain", null)
+  addresses = lookup(each.value, "addresses", [])
+  bridge    = lookup(each.value, "bridge", null)
+  dhcp      = lookup(each.value, "dhcp", false)
+  dns       = lookup(each.value, "dns", false)
+  autostart = lookup(each.value, "autostart", false)
 }
 
 ########################################
@@ -27,7 +36,7 @@ module "server" {
 
   networks = [
     for n in each.value.networks : {
-      network_id     = module.network.ids[n.network_name]
+      network_id     = module.network[n.network_name].id
       wait_for_lease = lookup(n, "wait_for_lease", false)
     }
   ]
