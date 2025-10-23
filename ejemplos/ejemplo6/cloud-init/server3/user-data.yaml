@@ -1,5 +1,5 @@
 #cloud-config
-hostname: server2
+hostname: server3
 users:
   - name: ubuntu
     sudo: ALL=(ALL) NOPASSWD:ALL
@@ -14,3 +14,7 @@ chpasswd:
       password: asdasd
       type: text
 package_update: true
+timezone: "Europe/Madrid"
+keyboard:
+  layout: es
+locale: es_ES.UTF-8
