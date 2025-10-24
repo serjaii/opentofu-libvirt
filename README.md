@@ -20,3 +20,4 @@ Su objetivo es mantener una herramienta **100 % libre y abierta**, compatible co
 
 * Escenario 1: Servidor web y cliente para prácticas de servidores web.
 * Escenario 2: proxy y backend para prácticas de proxy inverso
+* Escenario 3: Servidor web con php y mariadb. Proyecto base para el proyecto 1 de PI.
