@@ -9,6 +9,11 @@ if [[ ! -f "$STATE_FILE" ]]; then
     exit 1
 fi
 
+if [[ $(wc -l < "$STATE_FILE") -le 1 ]]; then
+    echo "⚠️ No hay recursos desplegados (estado vacío)"
+    exit 0
+fi
+
 echo "🚀 Activando redes…"
 grep -o '"name":[[:space:]]*"[^"]*"' "$STATE_FILE" | awk -F'"' '{print $4}' |
 while read -r NAME; do
