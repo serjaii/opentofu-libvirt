@@ -3,7 +3,7 @@
 ########################################
 
 module "network" {
-  source = "../../terraform/modules/network"
+  source = "../../../terraform/modules/network"
   for_each = local.networks
 
   name      = each.value.name
@@ -21,7 +21,7 @@ module "network" {
 ########################################
 
 module "server" {
-  source   = "../../terraform/modules/vm"
+  source   = "../../../terraform/modules/vm"
   for_each = local.servers
 
   name           = each.value.name
