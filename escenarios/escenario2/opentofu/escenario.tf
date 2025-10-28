@@ -20,6 +20,7 @@ locals {
       autostart = true
     }
 
+    
     muy-aislada = {
       name      = "muy-aislada2"
       mode      = "none" # sin conectividad
@@ -56,7 +57,7 @@ locals {
 
       networks = [
         { network_name = "nat-dhcp", wait_for_lease = true },
-        { network_name = "muy-aislada" }
+        { network_name = "muy-aislada"}
       ]
 
       user_data      = "${path.module}/cloud-init/server2/user-data.yaml"
