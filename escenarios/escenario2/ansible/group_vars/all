@@ -1,11 +1,17 @@
 # Lista con diccionarios para indicar los datos de los virtualhost que se van a crear:
 # apache2
 virtualhosts:
-  - name: 
+  - name: vhost1
     datos:
-      nameserver: 
-      documentroot:
-      errorlog: 
-      accesslog: 
+      nameserver: interno.example1.org
+      documentroot: /var/www/example1
+      errorlog: error_vhost1
+      accesslog: access_vhost1
   
+  - name: vhost2
+    datos:
+      nameserver: interno.example2.org
+      documentroot: /var/www/example2
+      errorlog: error_vhost2
+      accesslog: access_vhost2
 

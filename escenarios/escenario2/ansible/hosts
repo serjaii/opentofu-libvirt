@@ -3,9 +3,13 @@ all:
     servidores_web:
       hosts:
         backend:
-          ansible_host:
+          ansible_host: 192.168.101.132
           ansible_user: debian
           ansible_ssh_private_key_file: ~/.ssh/id_rsa
           
-
-    
+    servidores_proxy:
+      hosts:
+        proxy:
+          ansible_host: 192.168.101.187
+          ansible_user: debian
+          ansible_ssh_private_key_file: ~/.ssh/id_rsa

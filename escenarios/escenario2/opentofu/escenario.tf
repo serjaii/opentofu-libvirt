@@ -23,8 +23,11 @@ locals {
     
     muy-aislada = {
       name      = "muy-aislada2"
-      mode      = "none" # sin conectividad
+      mode      = "none" # sin conectividad  
+      addresses = ["10.0.0.0/24"]
       bridge    = "virbr12"
+      dhcp      = false
+      dns       = false
       autostart = true
     }
   }
