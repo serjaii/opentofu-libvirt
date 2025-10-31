@@ -3,12 +3,17 @@
 	ServerAdmin webmaster@localhost
 	DocumentRoot {{item.datos.documentroot}}
 
+	
+
 	<Directory {{ item.datos.documentroot }}>
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
+		
     </Directory>
-
+	
+	Redirect 301 /directorio /nuevodirectorio
+	
 	ErrorLog ${APACHE_LOG_DIR}/{{item.datos.errorlog}}.log
 	CustomLog ${APACHE_LOG_DIR}/{{item.datos.accesslog}}.log combined
 
