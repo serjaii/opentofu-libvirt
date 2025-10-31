@@ -9,21 +9,29 @@ locals {
   ##############################################
 
   networks = {
-    nat-dhcp = {
-      name      = "nat-dhcp2"
+    red-externa = {
+      name      = "red-externa"
       mode      = "nat"
       domain    = "example.com"
-      addresses = ["192.168.101.0/24"]
-      bridge    = "virbr11"
+      addresses = ["192.168.200.0/24"]
+      bridge    = "br-ex"
       dhcp      = true
       dns       = true
       autostart = true
     }
 
-    muy-aislada = {
-      name      = "muy-aislada2"
+    red-conf = {
+      name      = "red-conf"
       mode      = "none" # sin conectividad
-      bridge    = "virbr12"
+      addresses = ["192.168.201.0/24"]
+      bridge    = "br-conf"
+      autostart = true
+    }
+
+    red-datos = {
+      name      = "red-datos"
+      mode      = "none" # sin conectividad
+      bridge    = "br-datos"
       autostart = true
     }
   }
@@ -33,30 +41,32 @@ locals {
   ##############################################
 
   servers = {
-    proxy = {
-      name       = "proxy"
+    apache2 = {
+      name       = "apache2"
       memory     = 1024
       vcpu       = 1
       base_image = "debian13-base.qcow2"
 
       networks = [
-        { network_name = "nat-dhcp", wait_for_lease = true },
-        { network_name = "muy-aislada" }
+        { network_name = "red-externa", wait_for_lease = true },
+        { network_name = "red-conf" },
+        { network_name = "red-datos" }
       ]
 
       user_data      = "${path.module}/cloud-init/server1/user-data.yaml"
       network_config = "${path.module}/cloud-init/server1/network-config.yaml"
     }
 
-    backend = {
-      name       = "backend"
+    mariadb = {
+      name       = "mariadb"
       memory     = 1024
       vcpu       = 1
-      base_image = "debian13-base.qcow2"
+      base_image = "ubuntu2404-base.qcow2"
 
       networks = [
-        { network_name = "nat-dhcp", wait_for_lease = true },
-        { network_name = "muy-aislada" }
+        { network_name = "red-externa", wait_for_lease = true },
+        { network_name = "red-conf" },
+        { network_name = "red-datos" }
       ]
 
       user_data      = "${path.module}/cloud-init/server2/user-data.yaml"
