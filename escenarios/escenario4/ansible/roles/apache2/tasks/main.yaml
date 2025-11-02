@@ -1,0 +1,25 @@
+- name: Instalar servidor LAMP
+  apt:
+    pkg: 
+    - apache2
+    - php 
+    - libapache2-mod-php
+  
+
+- name: Copiar index.html
+  copy:
+    src: index_{{ ansible_hostname }}.html
+    dest: /var/www/html/index.html
+    owner: www-data
+    group: www-data
+    mode: 0644
+
+- name: Copiar app.php
+  copy:
+    src: app.php
+    dest: /var/www/html/app.php
+    owner: www-data
+    group: www-data
+    mode: 0644
+  
+
