@@ -1,0 +1,13 @@
+all:
+  children:
+    grupo_servidores_web:
+      hosts:
+        apache1: 
+          ansible_ssh_host: 192.168.10.11
+          ansible_ssh_user: debian 
+          ansible_ssh_private_key_file: ~/.ssh/id_rsa    
+        apache2: 
+          ansible_ssh_host: 192.168.10.12
+          ansible_ssh_user: debian 
+          ansible_ssh_private_key_file: ~/.ssh/id_rsa    
+        
