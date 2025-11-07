@@ -21,10 +21,10 @@ locals {
     }
 
     
-    muy-aislada = {
+    muy-aislada2 = {
       name      = "muy-aislada2"
       mode      = "none" # sin conectividad  
-      addresses = ["10.0.0.0/24"]
+      addresses = ["10.0.10.0/24"]
       bridge    = "virbr12"
       dhcp      = false
       dns       = false
@@ -45,7 +45,7 @@ locals {
 
       networks = [
         { network_name = "nat-dhcp", wait_for_lease = true },
-        { network_name = "muy-aislada" }
+        { network_name = "muy-aislada2" }
       ]
 
       user_data      = "${path.module}/cloud-init/server1/user-data.yaml"
@@ -60,7 +60,7 @@ locals {
 
       networks = [
         { network_name = "nat-dhcp", wait_for_lease = true },
-        { network_name = "muy-aislada"}
+        { network_name = "muy-aislada2"}
       ]
 
       user_data      = "${path.module}/cloud-init/server2/user-data.yaml"

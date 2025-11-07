@@ -20,8 +20,8 @@ locals {
       autostart = true
     }
 
-    muy-aislada = {
-      name      = "muy-aislada"
+    muy-aislada2 = {
+      name      = "muy-aislada2"
       mode      = "none" # sin conectividad
       bridge    = "virbr14"
       autostart = true
@@ -41,7 +41,7 @@ locals {
 
       networks = [
         { network_name = "nat-dhcp", wait_for_lease = true },
-        { network_name = "muy-aislada" }
+        { network_name = "muy-aislada2" }
       ]
 
       user_data      = "${path.module}/cloud-init/server1/user-data.yaml"
@@ -56,7 +56,7 @@ locals {
 
       networks = [
         { network_name = "nat-dhcp", wait_for_lease = true },
-        { network_name = "muy-aislada" }
+        { network_name = "muy-aislada2" }
       ]
 
       user_data      = "${path.module}/cloud-init/server2/user-data.yaml"
